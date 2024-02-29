@@ -26,11 +26,31 @@ export const todoslice = createSlice({
       // Add the new todo to the todos array in the state
       state.todos.push(newtodo);
     },
-    removeTod: (state, action) => {
+    removeTodo: (state, action) => {
       // Filter out the todo with the id from the action payload from the todos array in the state
       state.todos = state.todos.filter(
         (eachtodo) => eachtodo.id !== action.payload
       );
     },
+    updateTodo:(state,action)=>{
+      // In this updated version, the map function is used to iterate over the todos array. 
+      // If the current todo's id matches the id from the action payload, the updated todo is returned. 
+      // Otherwise, the current todo is returned unchanged. Finally, the new state of the todos array 
+      // is assigned back to the todos array in the state.
+      const updateid=action.payload.id;
+      const newstate=state.todos.map((currtodo)=>{
+        currtodo.id===updateid?action.payload:currtodo
+      })
+      state.todos=newstate;
+    }
   },
 });
+
+// then you have to export your fuctions beacause using this functions only you are going to change the state or update the state.
+
+export const  {addTodo,removeTodo}=todoslice.actions
+
+// now also you have to export the reducer to let your store have access to them.
+
+export default todoslice.reducer 
+
