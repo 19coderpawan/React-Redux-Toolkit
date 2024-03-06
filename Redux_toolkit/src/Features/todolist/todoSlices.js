@@ -2,19 +2,17 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 // Define the initial state of the todoslice
-const initilization = {
-  todos: [
-    {
-      id: nanoid(), // Generate a unique id for the todo using the nanoid function
-      text: "hello world", // The text of the todo
-    },
-  ],
+const initialState = {
+  todos: [{
+    id:1,
+    text:"pawan"
+  }],
 };
 
 // Create a new slice using the createSlice function
 export const todoslice = createSlice({
   name: "todo", // The name of the slice
-  initilization, // The initial state of the slice
+  initialState, // The initial state of the slice
   reducers: {
     // Define the reducers for the slice
     addTodo: (state, action) => {
@@ -53,4 +51,27 @@ export const  {addTodo,removeTodo}=todoslice.actions
 // now also you have to export the reducer to let your store have access to them.
 
 export default todoslice.reducer 
+
+// const initialState = {
+//   todos: [{
+//     id:1,
+//     text:"pawan"
+//   }],
+// };
+
+// const todoSlice = createSlice({
+//   name: 'todo',
+//   initialState,
+//   reducers: {
+//     addTodo: (state, action) => {
+//       state.todos = [...state.todos, action.payload];
+//     },
+//     removeTodo: (state, action) => {
+//       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+//     },
+//   },
+// });
+
+// export const { addTodo, removeTodo } = todoSlice.actions;
+// export default todoSlice.reducer;
 
